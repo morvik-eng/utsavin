@@ -586,9 +586,67 @@
       background: #f8fafc;
     }
 
-    /* Responsive */
-    @media(max-width: 900px) {
+    /* Mobile Nav Overrides */
+    .nav-toggle, .nav-toggle-label, .mobile-btn {
+      display: none;
+    }
+    .nav-toggle-label {
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .nav-toggle-label span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: var(--text-main);
+      border-radius: 3px;
+    }
 
+    /* Responsive */
+    @media(max-width: 1024px) {
+      .hero-grid {
+        gap: 32px;
+      }
+      .hero-content h1 {
+        font-size: 48px;
+      }
+      .slide img {
+        height: 500px;
+      }
+    }
+
+    @media(max-width: 900px) {
+      .desktop-btn {
+        display: none;
+      }
+      .nav-toggle-label, .mobile-btn {
+        display: flex;
+      }
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        padding: 24px;
+        gap: 20px;
+        border-bottom: 1px solid var(--card-border);
+        transform: translateY(-10px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+      .nav-toggle:checked ~ .nav-links {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      
       .hero-grid,
       .grid-3,
       .profiles,
@@ -605,16 +663,50 @@
         justify-content: center;
       }
 
-      .nav-links {
-        display: none;
-      }
-
       .hero-content h1 {
         font-size: 40px;
       }
 
       .slide img {
         height: 400px;
+      }
+      
+      .form-wrapper, .map-wrapper {
+        height: 450px;
+      }
+    }
+
+    @media(max-width: 600px) {
+      section {
+        padding: 60px 0;
+      }
+      .hero-content h1 {
+        font-size: 32px;
+      }
+      .hero-content p {
+        font-size: 16px;
+      }
+      .hero {
+        padding: 100px 0 40px;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      .hero-buttons .btn {
+        width: 100%;
+      }
+      .section-title {
+        font-size: 32px;
+      }
+      .slide img {
+        height: 300px;
+      }
+      .metric-value {
+        font-size: 36px;
+      }
+      .form-wrapper, .map-wrapper {
+        height: 350px;
       }
     }
   </style>
@@ -636,16 +728,23 @@
   <nav>
     <div class="container nav-inner">
       <div class="logo">
-        <img src="utsav1.png" alt="Logo">
-        <span>UTSAV INDUSTRIES</span>
+        <a href="#" style="display:flex; align-items:center; gap:16px;">
+          <img src="utsav1.png" alt="Logo">
+          <span style="font-size: clamp(16px, 4vw, 22px);">UTSAV INDUSTRIES</span>
+        </a>
       </div>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span><span></span><span></span>
+      </label>
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#why">Why Us</a>
         <a href="#dealers">Dealers</a>
         <a href="#contact">Contact</a>
+        <a href="#contact" class="btn btn-primary mobile-btn">Enquire Now</a>
       </div>
-      <a href="#contact" class="btn btn-primary">Enquire Now</a>
+      <a href="#contact" class="btn btn-primary desktop-btn">Enquire Now</a>
     </div>
   </nav>
 
